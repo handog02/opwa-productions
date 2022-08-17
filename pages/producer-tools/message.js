@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useFirestore } from '../../hooks/useFirestore'
 
 // bootstrap
-import Container from 'react-bootstrap/container'
+import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import { setCollection } from '../../hooks/setCollection'
 
