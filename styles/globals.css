@@ -1,0 +1,67 @@
+html {
+  background-color: #f2ebfa;
+}
+
+.main-content {
+  padding-top: 70px;
+}
+
+.content {
+  white-space: pre-line;
+}
+
+/* navbar */
+.navbar {
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, .85);
+}
+
+.navbar .active {
+  font-weight: bold;
+}
+
+/* sidebar */
+.sidebar {
+  padding-top: 60px;
+  overflow-y: auto;
+}
+
+.sidebar .active {
+  font-weight: bold;
+  background: rgba(82, 33, 146, 0.2);
+  border-radius: 20px 0 0 20px;
+}
+
+.sidebar .btn:active, .sidebar .btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* signup */
+.signup {
+  max-width: 540px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 0 auto;
+}
+
+/* login */
+.login {
+  max-width: 540px;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin: 0 auto;
+}
+
+/* mobile nav */
+.nav-list-group .list-group-item {
+  background-color: #f2ebfa;
+}
+
+.nav-list-group .mobile-nav-link {
+  text-decoration: none;
+}
+
+/* productions opera page */
+.no-padding-btn {
+  padding: 2px !important;
+}

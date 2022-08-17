@@ -1,0 +1,19 @@
+// custom variables
+$primary: #522192;
+$light: #f2ebfa;
+$dark: #2f1353;
+
+$offcanvas-horizontal-width: 240px;
+
+// import the functions and variables
+@import '../node_modules/bootstrap/scss/_functions';
+@import '../node_modules/bootstrap/scss/_variables';
+
+$custom-theme-colors: (
+
+);
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+
+// import bootstrap
+@import '../node_modules/bootstrap/scss/bootstrap';
