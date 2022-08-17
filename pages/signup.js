@@ -10,7 +10,7 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 
-export default function signup() {
+export default function Signup() {
   const { user } = useAuthContext()
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')

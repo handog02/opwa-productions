@@ -9,7 +9,7 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel'
 import Container from 'react-bootstrap/Container'
 import { useAuthContext } from '../hooks/useAuthContext'
 
-export default function login() {
+export default function Login() {
   const { user } = useAuthContext()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')

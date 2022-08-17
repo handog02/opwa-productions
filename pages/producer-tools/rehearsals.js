@@ -13,7 +13,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-export default function rehearsals() {
+export default function Rehearsals() {
   useRedirectProd()
 
   const [termOne, setTermOne] = useState('')

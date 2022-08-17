@@ -17,14 +17,14 @@ export default function Home() {
     opera[0].solos.forEach(solo => {
       const [roleName] = Object.keys(solo)
       const [id] = Object.values(solo)
-      if (user.uid === id) {
+      if (user?.uid === id) {
         userRoles.push(roleName)
       }
     })
     opera[0].groups.forEach(group => {
       const [roleName] = Object.keys(group)
       const [ids] = Object.values(group)
-      if (ids.includes(user.uid)) {
+      if (ids.includes(user?.uid)) {
         userRoles.push(roleName)
       }
     })
@@ -43,7 +43,7 @@ export default function Home() {
           } else {
             return (<span key={role} className="h4"> {role},</span>)
           }
-        })}      
+        })}
       </p>
 
       <p className="mt-5 mb-2">Here's what the producers have to say:</p>

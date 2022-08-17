@@ -14,7 +14,7 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import ListGroup from 'react-bootstrap/ListGroup'
 import { Trash } from 'react-bootstrap-icons'
 
-export default function index() {
+export default function Index() {
   useRedirectProd()
 
   // context and state

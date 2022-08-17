@@ -11,7 +11,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-export default function roles() {
+export default function Roles() {
   useRedirectProd()
 
   const { documents: userDocs } = useCollection('users')

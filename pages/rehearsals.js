@@ -14,7 +14,7 @@ const weeks = Array.from({length: 10}, (_, i) => i + 1)
 
 const isEmpty = a => Array.isArray(a) && a.every(isEmpty)
 
-export default function rehearsals() {
+export default function Rehearsals() {
   useRedirect()
 
   const [filter, setFilter] = useState(false)

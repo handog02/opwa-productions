@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/container'
 import Button from 'react-bootstrap/Button'
 import { useCollection } from '../../hooks/useCollection'
 
-export default function message() {
+export default function Message() {
   useRedirectProd()
 
   const [message, setMessage] = useState('Write Message Here.')
@@ -19,12 +19,6 @@ export default function message() {
   const handleSave = () => {
     updateDocument({ message }, 'opera')
   }
-
-  // useEffect(() => {
-  //   if (documents) {
-  //     setMessage(documents[0].message)
-  //   }
-  // }, [documents])
 
   return (
     <Container fluid="lg" className="text-dark">
