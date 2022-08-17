@@ -1,5 +1,5 @@
 import { useAuthContext } from '../hooks/useAuthContext'
-import { useCollection } from '../hooks/useCollection'
+import { setCollection } from '../hooks/setCollection'
 import { useRedirect } from '../hooks/useRedirect'
 
 // bootstrap
@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card'
 export default function Home() {
   useRedirect()
 
-  const { documents: opera } = useCollection('opera')
+  const { documents: opera } = setCollection('opera')
   const { user } = useAuthContext()
 
   const userRoles = []

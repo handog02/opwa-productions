@@ -1,6 +1,6 @@
 import { useRedirectProd } from '../../hooks/useRedirectProd'
 import { useEffect, useState } from 'react'
-import { useCollection } from '../../hooks/useCollection'
+import { setCollection } from '../../hooks/setCollection'
 import { useFirestore } from '../../hooks/useFirestore'
 import Select from 'react-select'
 
@@ -14,10 +14,10 @@ import Button from 'react-bootstrap/Button'
 export default function Roles() {
   useRedirectProd()
 
-  const { documents: userDocs } = useCollection('users')
+  const { documents: userDocs } = setCollection('users')
   const [users, setUsers] = useState(null)
 
-  const { documents } = useCollection('opera')
+  const { documents } = setCollection('opera')
   const [solos, setSolos] = useState([])
   const [groups, setGroups] = useState([])
 

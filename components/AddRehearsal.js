@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Select from 'react-select'
-import { useCollection } from '../hooks/useCollection'
+import { setCollection } from '../hooks/setCollection'
 import { Timestamp } from 'firebase/firestore'
 import { useFirestore } from '../hooks/useFirestore'
 import moment from 'moment'
@@ -30,7 +30,7 @@ export default function AddRehearsal({ termOne, termTwo, termThree }) {
   const [roles, setRoles] = useState(null)
   const [assigned, setAssigned] = useState([])
 
-  const { documents } = useCollection('opera')
+  const { documents } = setCollection('opera')
   const { addDocument, response } = useFirestore('rehearsals')
 
   useEffect(() => {

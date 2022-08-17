@@ -22,7 +22,7 @@ export default function Login() {
     if (user != null) {
       router.push('/')
     }
-  }, [user])
+  }, [user, router])
 
   const handleSubmit = e => {
     e.preventDefault()

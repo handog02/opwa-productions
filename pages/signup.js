@@ -27,7 +27,7 @@ export default function Signup() {
     if (user != null) {
       router.push('/')
     }
-  }, [user])
+  }, [user, router])
 
   const handleSubmit = (e) => {
 

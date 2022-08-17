@@ -1,4 +1,4 @@
-import { useCollection } from '../hooks/useCollection'
+import { setCollection } from '../hooks/setCollection'
 import RehearsalCard from '../components/RehearsalCard'
 import { useState } from 'react'
 import { useAuthContext} from '../hooks/useAuthContext'
@@ -20,7 +20,7 @@ export default function Rehearsals() {
   const [filter, setFilter] = useState(false)
 
   let rehearsals = terms.map(term => weeks.map(week => {
-    const { documents } = useCollection(
+    const { documents } = setCollection(
       'rehearsals',
       ['term', '==', term],
       ['week', '==', week],
@@ -30,7 +30,7 @@ export default function Rehearsals() {
   }))
 
   const { user } = useAuthContext()
-  const { documents: opera } = useCollection('opera')
+  const { documents: opera } = setCollection('opera')
 
   if (filter) {
     rehearsals = rehearsals.map(termRehearsals => {

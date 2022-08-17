@@ -6,7 +6,7 @@ import { useFirestore } from '../../hooks/useFirestore'
 // bootstrap
 import Container from 'react-bootstrap/container'
 import Button from 'react-bootstrap/Button'
-import { useCollection } from '../../hooks/useCollection'
+import { setCollection } from '../../hooks/setCollection'
 
 export default function Message() {
   useRedirectProd()
@@ -14,7 +14,7 @@ export default function Message() {
   const [message, setMessage] = useState('Write Message Here.')
 
   const { updateDocument, response } = useFirestore('opera')
-  const { documents } = useCollection('opera')
+  const { documents } = setCollection('opera')
 
   const handleSave = () => {
     updateDocument({ message }, 'opera')

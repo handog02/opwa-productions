@@ -1,4 +1,4 @@
-import { useCollection } from '../hooks/useCollection'
+import { setCollection } from '../hooks/setCollection'
 import RehearsalCard from './RehearsalCard'
 
 // bootstrap
@@ -12,7 +12,7 @@ const isEmpty = a => Array.isArray(a) && a.every(isEmpty)
 
 export default function RehearsalListEdit() {
   const rehearsals = terms.map(term => weeks.map(week => {
-    const { documents } = useCollection(
+    const { documents } = setCollection(
       'rehearsals',
       ['term', '==', term],
       ['week', '==', week],

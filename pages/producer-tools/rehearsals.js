@@ -1,6 +1,6 @@
 import { useRedirectProd } from '../../hooks/useRedirectProd'
 import { useEffect, useState } from 'react'
-import { useCollection } from '../../hooks/useCollection'
+import { setCollection } from '../../hooks/setCollection'
 import { useFirestore } from '../../hooks/useFirestore'
 import { Timestamp } from 'firebase/firestore'
 import AddRehearsal from '../../components/AddRehearsal'
@@ -20,7 +20,7 @@ export default function Rehearsals() {
   const [termTwo, setTermTwo] = useState('')
   const [termThree, setTermThree] = useState('')
 
-  const { documents } = useCollection('opera')
+  const { documents } = setCollection('opera')
   const { updateDocument, response } = useFirestore('opera')
 
   useEffect(() => {

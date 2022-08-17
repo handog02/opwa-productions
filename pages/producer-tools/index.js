@@ -2,7 +2,7 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 import { useRedirectProd } from '../../hooks/useRedirectProd'
 import { useEffect, useRef, useState } from 'react'
 import { useFirestore } from '../../hooks/useFirestore'
-import { useCollection } from '../../hooks/useCollection'
+import { setCollection } from '../../hooks/setCollection'
 
 // bootstrap
 import Container from 'react-bootstrap/Container'
@@ -32,7 +32,7 @@ export default function Index() {
   // firestore stuff
   const { updateDocument, setDocument, response } = useFirestore('opera')
 
-  const { documents } = useCollection('opera')
+  const { documents } = setCollection('opera')
 
   // set state based on what's on firestore
   useEffect(() => {
