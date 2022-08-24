@@ -31,8 +31,10 @@ export default function Index() {
  
   // firestore stuff
   const { updateDocument, setDocument, response } = useFirestore('opera')
+  const { updateDocument: updateRehearsal, response: rehearsalResponse } = useFirestore('rehearsals')
 
   const { documents } = setCollection('opera')
+  const { documents: rehearsals } = setCollection('rehearsals')
 
   // set state based on what's on firestore
   useEffect(() => {
@@ -87,8 +89,34 @@ export default function Index() {
 
   const handleSubmit = () => {
     updateDocument({ opera, composer, synopsis, solos, groups }, 'opera')
+
+    const compSolos = solos.map(s => {
+      const [name] = Object.keys(s)
+      return name
+    })
+    const compGroups = groups.map(s => {
+      const [name] = Object.keys(s)
+      return name
+    })
+    const allRoles = compSolos.concat(compGroups)
+
+    rehearsals.forEach(rehearsal => {
+      const filtered = rehearsal.assignedRoles.filter(roleObj => {
+        const [role] = Object.keys(roleObj)        
+        console.log(allRoles, role)
+        return allRoles.includes(role)
+      })
+
+      console.log(filtered)
+
+      updateRehearsal({ assignedRoles: filtered }, rehearsal.id)
+    })
+
     if (response) {
       console.log(response.error)
+    }
+    if (rehearsalResponse) {
+      console.log(rehearsalResponse.error)
     }
   }
 
@@ -223,6 +251,7 @@ export default function Index() {
                     as="textarea"
                     onChange={e => setSynopsis([...synopsis.slice(0, index), e.target.value, ...synopsis.slice(index + 1)])}
                     value={synopsis[index]}
+                    rows={5}
                   />
                 </Form.Group>
                 <div className="text-center mt-2">

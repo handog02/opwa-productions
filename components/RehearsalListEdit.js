@@ -10,7 +10,7 @@ const weeks = Array.from({length: 10}, (_, i) => i + 1)
 
 const isEmpty = a => Array.isArray(a) && a.every(isEmpty)
 
-export default function RehearsalListEdit() {
+export default function RehearsalListEdit({ termOne, termTwo, termThree }) {
   const rehearsals = terms.map(term => weeks.map(week => {
     const { documents } = setCollection(
       'rehearsals',
@@ -30,7 +30,14 @@ export default function RehearsalListEdit() {
           <Container>
             <Row>
               {weekRehearsals?.map((rehearsal, index) => (
-                <RehearsalCard rehearsal={rehearsal} key={index} producer={true} />
+                <RehearsalCard
+                  rehearsal={rehearsal}
+                  key={index}
+                  producer={true}
+                  termOne={termOne}
+                  termTwo={termTwo}
+                  termThree={termThree}
+                />
               ))}
             </Row>
           </Container>

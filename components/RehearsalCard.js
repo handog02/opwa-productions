@@ -1,6 +1,7 @@
 import moment from 'moment'
 import { useState } from 'react'
 import { useFirestore } from '../hooks/useFirestore'
+import EditRehearsal from './EditRehearsal'
 
 // bootstrap
 import Col from 'react-bootstrap/Col'
@@ -9,10 +10,11 @@ import Card from 'react-bootstrap/Card'
 import Badge from 'react-bootstrap/Badge'
 import Modal from 'react-bootstrap/Modal'
 
-export default function RehearsalCard({ rehearsal, producer }) {
+export default function RehearsalCard({ rehearsal, producer, termOne, termTwo, termThree }) {
   const date = moment(rehearsal.date.toDate()).format('dddd, Do MMM YYYY')
 
   const [show, setShow] = useState(false)
+  const [edit, setEdit] = useState(false)
 
   const { deleteDocument } = useFirestore('rehearsals')
   const handleDelete = () => {
@@ -37,7 +39,8 @@ export default function RehearsalCard({ rehearsal, producer }) {
               })}
             </div>
             <div className="d-flex justify-content-between">
-              <Button onClick={() => setShow(true)}>See Details</Button>
+              {!producer && <Button onClick={() => setShow(true)}>See Details</Button>}
+              {producer && <Button onClick={() => setEdit(true)}>Edit</Button>}
               {producer && <Button variant="danger" size="sm" onClick={() => handleDelete()}>Delete</Button>}
             </div>
           </Card.Body>
@@ -62,6 +65,15 @@ export default function RehearsalCard({ rehearsal, producer }) {
           <Button onClick={() => setShow(false)}>Close</Button>
         </Modal.Footer>
       </Modal>
+
+      <EditRehearsal
+        rehearsal={rehearsal}
+        edit={edit}
+        setEdit={setEdit}
+        termOne={termOne}
+        termTwo={termTwo}
+        termThree={termThree}
+      />
     </>
   )
 }

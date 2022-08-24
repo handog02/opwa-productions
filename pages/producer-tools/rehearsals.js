@@ -19,6 +19,7 @@ export default function Rehearsals() {
   const [termOne, setTermOne] = useState('')
   const [termTwo, setTermTwo] = useState('')
   const [termThree, setTermThree] = useState('')
+  const [error, setError] = useState(null)
 
   const { documents } = setCollection('opera')
   const { updateDocument, response } = useFirestore('opera')
@@ -32,11 +33,21 @@ export default function Rehearsals() {
   }, [documents])
 
   const handleSaveTerms = () => {
-    updateDocument({
-      termOne: Timestamp.fromDate(new Date(termOne)),
-      termTwo: Timestamp.fromDate(new Date(termTwo)),
-      termThree: Timestamp.fromDate(new Date(termThree)),
-    }, 'opera')
+    setError(null)
+    const term1 = new Date(termOne)
+    const term2 = new Date(termTwo)
+    const term3 = new Date(termThree)
+
+    if (term1 > term2 || term2 > term3 || term1 > term3) {
+      setError('Please check the dates!')
+    } else {
+      updateDocument({
+        termOne: Timestamp.fromDate(new Date(termOne)),
+        termTwo: Timestamp.fromDate(new Date(termTwo)),
+        termThree: Timestamp.fromDate(new Date(termThree)),
+      }, 'opera')
+    }
+
   }
 
   return (
@@ -70,11 +81,12 @@ export default function Rehearsals() {
           {!response.isPending && <Button variant="outline-primary" size="sm" onClick={handleSaveTerms}>Save Changes</Button>}
           {response.isPending && <Button variant="outline-primary" size="sm" disabled>Loading</Button>}
         </div>
+        {error && <p className="text-danger text-center">{error}</p>}
       </Form>
 
       <AddRehearsal termOne={termOne} termTwo={termTwo} termThree={termThree} />
 
-      <RehearsalListEdit />
+      <RehearsalListEdit termOne={termOne} termTwo={termTwo} termThree={termThree} />
     </Container>
   )
 }

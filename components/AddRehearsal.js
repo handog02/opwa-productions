@@ -21,6 +21,7 @@ const getWeekNumber = (date) => {
 
 export default function AddRehearsal({ termOne, termTwo, termThree }) {
   const [show, setShow] = useState(false)
+  const [error, setError] = useState(null)
 
   const [date, setDate] = useState('')
   const [start, setStart] = useState('')
@@ -54,8 +55,7 @@ export default function AddRehearsal({ termOne, termTwo, termThree }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-
-    console.log(date)
+    setError(null)
 
     const rehearsalDate = moment(`${date} ${start}`, 'YYYY-MM-DD hh:mm').toDate()
     const term1 = new Date(termOne)
@@ -82,30 +82,33 @@ export default function AddRehearsal({ termOne, termTwo, termThree }) {
       term = 3
       week = rehearsalWeek - term3Week
     }
+    if (rehearsalDate < term1 || week > 10) {
+      setError('Please check your dates!')
+      e.stopPropagation()
+    } else {
+      const assignedRoles = assigned.map(role => role.value)
 
-    const assignedRoles = assigned.map(role => role.value)
+      const rehearsal = {
+        date: Timestamp.fromDate(rehearsalDate),
+        term,
+        week,
+        start,
+        end,
+        location,
+        assignedRoles,
+        desc
+      }
 
-    const rehearsal = {
-      date: Timestamp.fromDate(rehearsalDate),
-      term,
-      week,
-      start,
-      end,
-      location,
-      assignedRoles,
-      desc
-    }
-
-    await addDocument(rehearsal)
-
-    if (!response.error) {
-      setDate('')
-      setStart('')
-      setEnd('')
-      setLocation('')
-      setDesc('')
-      setAssigned([])
-      setShow(false)
+      await addDocument(rehearsal)
+      if (!response.error) {
+        setDate('')
+        setStart('')
+        setEnd('')
+        setLocation('')
+        setDesc('')
+        setAssigned([])
+        setShow(false)
+      }
     }
 
   }
@@ -162,6 +165,7 @@ export default function AddRehearsal({ termOne, termTwo, termThree }) {
                 onChange={e => setDesc(e.target.value)}
                 value={desc}
                 required
+                rows={5}
               />
             </Form.Group>
 
@@ -182,6 +186,7 @@ export default function AddRehearsal({ termOne, termTwo, termThree }) {
               Add
             </Button>
             {response.error && <p className="text-danger">Could not upload the data</p>}
+            {error && <p className="text-danger">{error}</p>}
           </Modal.Footer>
         </Form>
       </Modal>

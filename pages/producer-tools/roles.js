@@ -77,7 +77,6 @@ export default function Roles() {
           return key === chorus
         })
 
-        const ids = options.map(option => option.value.id)
         copy[index] = { [chorus]: '' }
         return copy
       })

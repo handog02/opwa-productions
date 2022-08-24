@@ -53,7 +53,7 @@ export default function Home() {
       </Card>
 
       <p className="mt-5 mb-2">Bored? Have a read through the synopsis below:</p>
-      <Card body>
+      <Card body className="mb-3">
         {opera[0].synopsis.map((text, index) => (
           <div key={index}>
             <h5 className="mb-2">Act {index + 1}</h5>
