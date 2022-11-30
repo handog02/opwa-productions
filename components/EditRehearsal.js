@@ -90,15 +90,15 @@ export default function EditRehearsal({ rehearsal, edit, setEdit, termOne, termT
 
     if (term1 <= rehearsalDate && rehearsalDate < term2) {
       term = 1
-      week = week = rehearsalWeek - term1Week
+      week = week = rehearsalWeek - term1Week + 1
     }
     if (term2 <= rehearsalDate && rehearsalDate < term3) {
       term = 2
-      week = rehearsalWeek - term2Week
+      week = rehearsalWeek - term2Week + 1
     }
     if (term3 <= rehearsalDate) {
       term = 3
-      week = rehearsalWeek - term3Week
+      week = rehearsalWeek - term3Week + 1
     }
     if (rehearsalDate < term1 || week > 10) {
       setError('Please check your dates!')
