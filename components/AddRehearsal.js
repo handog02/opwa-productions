@@ -13,7 +13,7 @@ import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 
 const getWeekNumber = (date) => {
-  const startDate = date.getFullYear()
+  const startDate = startDate = new Date(date.getFullYear(), 0, 1)
   const days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000))
   const weekNumber = Math.ceil(days / 7)
   return weekNumber
@@ -72,7 +72,7 @@ export default function AddRehearsal({ termOne, termTwo, termThree }) {
 
     if (term1 <= rehearsalDate && rehearsalDate < term2) {
       term = 1
-      week = week = rehearsalWeek - term1Week + 1
+      week = rehearsalWeek - term1Week + 1
     }
     if (term2 <= rehearsalDate && rehearsalDate < term3) {
       term = 2
@@ -82,7 +82,7 @@ export default function AddRehearsal({ termOne, termTwo, termThree }) {
       term = 3
       week = rehearsalWeek - term3Week + 1
     }
-    if (rehearsalDate < term1 || week > 10) {
+    if (rehearsalDate < term1 || week > 10 || week < 1) {
       setError('Please check your dates!')
       e.stopPropagation()
     } else {
